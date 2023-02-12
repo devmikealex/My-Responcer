@@ -1,0 +1,12 @@
+{
+    "name": "my-responcer",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dataRead.js",
+    "scripts": {
+        "watch": "tsc --watch"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}

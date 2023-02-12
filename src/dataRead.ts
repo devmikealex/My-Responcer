@@ -1,28 +1,32 @@
+import RecCollection from './RecCollection.js'
+import TextRecord from './TextRecord.js'
+
 export default async function start() {
     const res = await fetch('./data.txt')
     const data = await res.text()
     createData(data)
-    // .then((res) => res.text())
-    // .then((data) => createData(data))
 }
 
 export function createData(data: string) {
     const outputContainer = document.getElementById('output')
     const templatesContainer = document.getElementById('templates')
-    if (templatesContainer && outputContainer) {
-        console.log('🚀 ~ file: dataRead.js:8 ~ createData ~ data', data)
-        const templates = data.split('\r\n\r\n\r\n')
-        console.log(templates)
+    const recCollection = new RecCollection()
 
+    if (templatesContainer && outputContainer) {
+        const templates = data.split('\r\n\r\n\r\n')
         templates.forEach((text) => {
-            text = text.replaceAll('\r\n', '<br>')
-            const newEl = document.createElement('div')
-            // p.textContent = text
-            newEl.innerHTML = text
-            newEl.className = 'draggable'
-            newEl.draggable = true
-            if (text[0] === '1') outputContainer.appendChild(newEl)
-            else templatesContainer.appendChild(newEl)
+            const record = new TextRecord(text)
+            recCollection.addRecord(record)
+
+            // const newEl = document.createElement('div')
+            // newEl.innerHTML = record.getHTML()
+            // newEl.className = 'draggable'
+            // newEl.draggable = true
+            // newEl.id = record.id
+            // if (record.position === 1) outputContainer.appendChild(newEl)
+            // else templatesContainer.appendChild(newEl)
+            if (record.position === 1) outputContainer.appendChild(record.element)
+            else templatesContainer.appendChild(record.element)
         })
     }
 }
