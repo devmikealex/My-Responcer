@@ -1,6 +1,19 @@
-import start from './dataRead.js';
-const copyBTN = document.getElementById('CopyBTN');
-copyBTN?.addEventListener('click', copyText);
+// import start from './dataRead.js'
+import RecCollection from './RecCollection.js';
+import Viewer from './viewer.js';
+const recCollection = new RecCollection();
+const viewer = new Viewer();
+document.getElementById('CopyBTN')?.addEventListener('click', copyText);
+document.getElementById('SaveBTN')?.addEventListener('click', save);
+document.getElementById('LoadBTN')?.addEventListener('click', load);
+document.getElementById('LoadCLR')?.addEventListener('click', clear);
+async function start() {
+    const res = await fetch('./data.txt');
+    const data = await res.text();
+    // recCollection.createData(data)
+    viewer.createData(data);
+    console.log(viewer.getRecOrder());
+}
 start().then(() => {
     const draggables = document.querySelectorAll('.draggable');
     const containers = document.querySelectorAll('.container');
@@ -77,10 +90,24 @@ start().then(() => {
         });
     });
 });
+function save() {
+    // console.log(viewer.getRecOrder())
+    const t = JSON.stringify(viewer.getRecOrder());
+    console.log(t);
+    localStorage.setItem('RecInfo', t);
+}
+function load() {
+    const t = localStorage.getItem('RecInfo');
+    console.log(t);
+}
+function clear() {
+    localStorage.removeItem('RecInfo');
+}
 function copyText() {
     const a = getText('output');
     navigator.clipboard.writeText(a);
     console.log(a);
+    // console.log(viewer.getRecOrder())
 }
 function getText(id) {
     const nodes = document.getElementById(id)?.childNodes;

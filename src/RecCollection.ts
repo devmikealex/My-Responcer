@@ -7,10 +7,26 @@ export default class RecCollection {
         this.collection = []
     }
 
-    addRecord(rec: TextRecord) {
+    addRecord(rec: TextRecord): void {
         this.collection.push(rec)
     }
-    out() {
-        return this.collection.map((item) => item.id)
+    out(): object[] {
+        return this.collection.map((item) => {
+            return { id: item.id, position: item.position }
+        })
+    }
+    createData(data: string) {
+        const outputContainer = document.getElementById('output')
+        const templatesContainer = document.getElementById('templates')
+
+        if (templatesContainer && outputContainer) {
+            const templates = data.split('\r\n\r\n\r\n')
+            templates.forEach((text) => {
+                const record = new TextRecord(text)
+                this.addRecord(record)
+                if (record.position === 1) outputContainer.appendChild(record.element)
+                else templatesContainer.appendChild(record.element)
+            })
+        }
     }
 }
