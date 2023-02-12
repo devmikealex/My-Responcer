@@ -1,4 +1,5 @@
 import TextRecord from './TextRecord.js';
+// type RecInfo = { id: string; position: number }
 export default class RecCollection {
     constructor() {
         this.collection = [];
@@ -8,7 +9,30 @@ export default class RecCollection {
     }
     out() {
         return this.collection.map((item) => {
-            return { id: item.id, position: item.position };
+            return { id: item.id, position: item.position, element: item.element };
+        });
+    }
+    newOrder(recs) {
+        // TODO
+        console.log('IN');
+        const newRecs = [];
+        // заменить позишин и пермешать массив
+        this.collection.forEach((item) => {
+            const index = recs.findIndex((rec) => rec.id === item.id);
+            item.position = recs[index].position;
+            newRecs[index] = item;
+        });
+        this.collection = newRecs;
+        // this.collection.forEach((item) => {
+        //     const index = recs.findIndex((rec) => rec.id === item.id)
+        //     item.position = recs[index].position
+        // })
+    }
+    readData(data) {
+        const templates = data.split('\r\n\r\n\r\n');
+        templates.forEach((text) => {
+            const record = new TextRecord(text);
+            this.addRecord(record);
         });
     }
     createData(data) {

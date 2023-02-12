@@ -1,4 +1,7 @@
 import TextRecord from './TextRecord.js'
+import { RecInfo } from './types.js'
+
+// type RecInfo = { id: string; position: number }
 
 export default class RecCollection {
     private collection: TextRecord[]
@@ -10,9 +13,35 @@ export default class RecCollection {
     addRecord(rec: TextRecord): void {
         this.collection.push(rec)
     }
-    out(): object[] {
+    out(): RecInfo[] {
         return this.collection.map((item) => {
-            return { id: item.id, position: item.position }
+            return { id: item.id, position: item.position, element: item.element }
+        })
+    }
+    newOrder(recs: RecInfo[]): void {
+        // TODO
+        console.log('IN')
+
+        const newRecs: TextRecord[] = []
+
+        // заменить позишин и пермешать массив
+        this.collection.forEach((item) => {
+            const index = recs.findIndex((rec) => rec.id === item.id)
+            item.position = recs[index].position
+            newRecs[index] = item
+        })
+        this.collection = newRecs
+
+        // this.collection.forEach((item) => {
+        //     const index = recs.findIndex((rec) => rec.id === item.id)
+        //     item.position = recs[index].position
+        // })
+    }
+    readData(data: string) {
+        const templates = data.split('\r\n\r\n\r\n')
+        templates.forEach((text) => {
+            const record = new TextRecord(text)
+            this.addRecord(record)
         })
     }
     createData(data: string) {

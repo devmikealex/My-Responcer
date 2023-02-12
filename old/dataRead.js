@@ -1,22 +1,32 @@
-fetch('./data.txt')
-    .then((res) => res.text())
-    .then((data) => createData(data))
-
-function createData(data) {
-    const templatesContainer = document.getElementById('templates')
-    console.log('🚀 ~ file: dataRead.js:8 ~ createData ~ data', data)
-    const templates = data.split('\r\n\r\n\r\n')
-    console.log(templates)
-
-    templates.forEach((text) => {
-        text = text.replaceAll('\r\n\r\n', '<br>')
-        const p = document.createElement('div')
-        // p.textContent = text
-        p.innerHTML = text
-        p.className = 'draggable'
-        p.draggable = true
-        templatesContainer.appendChild(p)
-    })
-
-    document.querySelector('body').dispatchEvent(new Event('dataLoaded'))
+import RecCollection from './RecCollection.js';
+import TextRecord from './TextRecord.js';
+const recCollection = new RecCollection();
+export default async function start() {
+    const res = await fetch('./data.txt');
+    const data = await res.text();
+    recCollection.createData(data);
+    console.log(recCollection.out());
 }
+function createData(data) {
+    const outputContainer = document.getElementById('output');
+    const templatesContainer = document.getElementById('templates');
+    if (templatesContainer && outputContainer) {
+        const templates = data.split('\r\n\r\n\r\n');
+        templates.forEach((text) => {
+            const record = new TextRecord(text);
+            recCollection.addRecord(record);
+            // const newEl = document.createElement('div')
+            // newEl.innerHTML = record.getHTML()
+            // newEl.className = 'draggable'
+            // newEl.draggable = true
+            // newEl.id = record.id
+            // if (record.position === 1) outputContainer.appendChild(newEl)
+            // else templatesContainer.appendChild(newEl)
+            if (record.position === 1)
+                outputContainer.appendChild(record.element);
+            else
+                templatesContainer.appendChild(record.element);
+        });
+    }
+}
+//# sourceMappingURL=dataRead.js.map

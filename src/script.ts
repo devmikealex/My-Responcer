@@ -1,6 +1,7 @@
 // import start from './dataRead.js'
 
 import RecCollection from './RecCollection.js'
+import { RecInfo } from './types.js'
 import Viewer from './viewer.js'
 
 const recCollection = new RecCollection()
@@ -15,8 +16,13 @@ async function start() {
     const res = await fetch('./data.txt')
     const data = await res.text()
     // recCollection.createData(data)
-    viewer.createData(data)
-    console.log(viewer.getRecOrder())
+    recCollection.readData(data)
+    load()
+    // viewer.createData(data)
+    viewer.render(recCollection.out())
+
+    console.log('OUT', recCollection.out())
+    console.log('VIEW', viewer.getRecOrder())
 }
 
 start().then(() => {
@@ -102,6 +108,12 @@ start().then(() => {
                 element.classList.remove('red')
                 element.classList.remove('blue')
             })
+            const newOrder = viewer.getRecOrder()
+            console.log(newOrder)
+            recCollection.newOrder(newOrder)
+            console.log(recCollection.out())
+            viewer.render(recCollection.out())
+
             console.log('----------------------------')
             console.log(getText('output'))
         })
@@ -117,7 +129,16 @@ function save() {
 
 function load() {
     const t = localStorage.getItem('RecInfo')
-    console.log(t)
+    if (t) {
+        console.log(t)
+        const newOrder: RecInfo[] = JSON.parse(t)
+        console.log(newOrder)
+        recCollection.newOrder(newOrder)
+        console.log(recCollection.out())
+        viewer.render(recCollection.out())
+    } else {
+        console.info('Settings Not found')
+    }
 }
 
 function clear() {
