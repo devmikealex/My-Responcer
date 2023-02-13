@@ -33,3 +33,10 @@ body {
 .blue {
     background-color: rgb(196, 218, 255);
 }
+
+#log-output {
+    background-color: aquamarine;
+    font-size: 10px;
+    max-height: 6em;
+    overflow-y: auto;
+}

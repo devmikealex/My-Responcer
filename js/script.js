@@ -1,7 +1,5 @@
 import RecCollection from './RecCollection.js';
-import Viewer from './Viewer.js';
 const recCollection = new RecCollection();
-const viewer = new Viewer();
 document.getElementById('CopyBTN')?.addEventListener('click', copyText);
 document.getElementById('SaveBTN')?.addEventListener('click', save);
 document.getElementById('LoadBTN')?.addEventListener('click', load);
@@ -9,13 +7,9 @@ document.getElementById('LoadCLR')?.addEventListener('click', clear);
 async function start() {
     const res = await fetch('./data.txt');
     const data = await res.text();
-    // recCollection.createData(data)
     recCollection.readData(data);
     load();
-    // viewer.createData(data)
-    viewer.render(recCollection.out());
-    console.log('OUT', recCollection.out());
-    console.log('VIEW', viewer.getRecOrder());
+    recCollection.render();
 }
 start().then(() => {
     const draggables = document.querySelectorAll('.draggable');
@@ -88,46 +82,25 @@ start().then(() => {
                 element.classList.remove('red');
                 element.classList.remove('blue');
             });
-            const newOrder = viewer.getRecOrder();
-            console.log(newOrder);
-            recCollection.newOrder(newOrder);
-            console.log(recCollection.out());
-            viewer.render(recCollection.out());
+            recCollection.updateAfterDrag();
             console.log('----------------------------');
-            console.log(getText('output'));
+            console.log(recCollection.getText());
         });
     });
 });
 function save() {
-    // console.log(viewer.getRecOrder())
-    const t = JSON.stringify(viewer.getRecOrder());
-    console.log(t);
-    localStorage.setItem('RecInfo', t);
+    recCollection.saveData();
 }
 function load() {
-    const t = localStorage.getItem('RecInfo');
-    if (t) {
-        console.log(t);
-        const newOrder = JSON.parse(t);
-        console.log(newOrder);
-        recCollection.newOrder(newOrder);
-        console.log(recCollection.out());
-        viewer.render(recCollection.out());
-    }
-    else {
-        console.info('Settings Not found');
-    }
+    recCollection.loadData();
 }
 function clear() {
-    localStorage.removeItem('RecInfo');
+    recCollection.clearData();
 }
 function copyText() {
-    const a = getText('output');
-    navigator.clipboard.writeText(a);
-    console.log(a);
-    // console.log(viewer.getRecOrder())
+    recCollection.copyText();
 }
-function getText(id) {
+function _getText(id) {
     const nodes = document.getElementById(id)?.childNodes;
     if (nodes) {
         let nodesArr = [...nodes];

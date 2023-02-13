@@ -3,6 +3,7 @@ import { RecInfo } from './types.js'
 
 const outputContainer = document.getElementById('output')
 const templatesContainer = document.getElementById('templates')
+const logout = document.getElementById('log-output')
 
 export default class Viewer {
     createData(data: string): TextRecord[] {
@@ -34,5 +35,11 @@ export default class Viewer {
             return { id: item.id, position: item.parentElement?.id === 'output' ? 1 : 0 }
         })
         return arr
+    }
+    log(message: string) {
+        const newEl = document.createElement('div')
+        newEl.textContent = message
+        newEl.className = 'log-item'
+        logout!.prepend(newEl)
     }
 }

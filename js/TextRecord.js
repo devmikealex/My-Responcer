@@ -1,4 +1,22 @@
+/**
+ * Модуль для класса одного текстового блока
+ * @module TextRecord
+ */
+/**
+ * Класс для экземпляра одного текстового блока
+ * @param {string} id - Идентификтор объекта (берется из файла)
+ * @param {string} text - Сырой текст (берется из файла)
+ * @param {HTMLDivElement} element - Элемент DOM для отображения на странице
+ * @param {number} position - На какой панели распологать 1 для вывода / 0 в резерве
+ * @export
+ * @class TextRecord
+ */
 export default class TextRecord {
+    /**
+     * Creates an instance of TextRecord.
+     * @param {string} data - Блок текста для парсинга из файла
+     * @memberof TextRecord
+     */
     constructor(data) {
         const indexForSplit = data.indexOf('\r\n');
         const firstLine = data.slice(0, indexForSplit);
@@ -18,6 +36,10 @@ function createHTML(rec) {
     newEl.className = 'draggable';
     newEl.draggable = true;
     newEl.id = rec.id;
+    const newCheck = document.createElement('input');
+    newCheck.type = 'checkbox';
+    newCheck.checked = true;
+    newEl.prepend(newCheck);
     return newEl;
 }
 //# sourceMappingURL=TextRecord.js.map

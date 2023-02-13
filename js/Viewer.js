@@ -1,6 +1,7 @@
 import TextRecord from './TextRecord.js';
 const outputContainer = document.getElementById('output');
 const templatesContainer = document.getElementById('templates');
+const logout = document.getElementById('log-output');
 export default class Viewer {
     createData(data) {
         const arr = [];
@@ -35,6 +36,12 @@ export default class Viewer {
             return { id: item.id, position: item.parentElement?.id === 'output' ? 1 : 0 };
         });
         return arr;
+    }
+    log(message) {
+        const newEl = document.createElement('div');
+        newEl.textContent = message;
+        newEl.className = 'log-item';
+        logout.prepend(newEl);
     }
 }
 //# sourceMappingURL=Viewer.js.map

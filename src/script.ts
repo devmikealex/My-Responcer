@@ -1,26 +1,18 @@
 import RecCollection from './RecCollection.js'
-import { RecInfo } from './types.js'
-import Viewer from './Viewer.js'
 
 const recCollection = new RecCollection()
-const viewer = new Viewer()
 
-document.getElementById('CopyBTN')?.addEventListener('click', copyText)
-document.getElementById('SaveBTN')?.addEventListener('click', save)
-document.getElementById('LoadBTN')?.addEventListener('click', load)
-document.getElementById('LoadCLR')?.addEventListener('click', clear)
+// document.getElementById('CopyBTN')?.addEventListener('click', copyText)
+// document.getElementById('SaveBTN')?.addEventListener('click', save)
+// document.getElementById('LoadBTN')?.addEventListener('click', load)
+// document.getElementById('LoadCLR')?.addEventListener('click', clear)
 
 async function start() {
     const res = await fetch('./data.txt')
     const data = await res.text()
-    // recCollection.createData(data)
     recCollection.readData(data)
-    load()
-    // viewer.createData(data)
-    viewer.render(recCollection.out())
-
-    console.log('OUT', recCollection.out())
-    console.log('VIEW', viewer.getRecOrder())
+    recCollection.loadData() // загрузка настроек отображения
+    recCollection.render()
 }
 
 start().then(() => {
@@ -106,63 +98,10 @@ start().then(() => {
                 element.classList.remove('red')
                 element.classList.remove('blue')
             })
-            const newOrder = viewer.getRecOrder()
-            console.log(newOrder)
-            recCollection.newOrder(newOrder)
-            console.log(recCollection.out())
-            viewer.render(recCollection.out())
+            recCollection.updateAfterDrag()
 
             console.log('----------------------------')
-            console.log(getText('output'))
+            console.log(recCollection.getText())
         })
     })
 })
-
-function save() {
-    // console.log(viewer.getRecOrder())
-    const t = JSON.stringify(viewer.getRecOrder())
-    console.log(t)
-    localStorage.setItem('RecInfo', t)
-}
-
-function load() {
-    const t = localStorage.getItem('RecInfo')
-    if (t) {
-        console.log(t)
-        const newOrder: RecInfo[] = JSON.parse(t)
-        console.log(newOrder)
-        recCollection.newOrder(newOrder)
-        console.log(recCollection.out())
-        viewer.render(recCollection.out())
-    } else {
-        console.info('Settings Not found')
-    }
-}
-
-function clear() {
-    localStorage.removeItem('RecInfo')
-}
-
-function copyText() {
-    const a = getText('output')
-    navigator.clipboard.writeText(a)
-    console.log(a)
-    // console.log(viewer.getRecOrder())
-}
-
-function getText(id: string): string {
-    const nodes = document.getElementById(id)?.childNodes
-    if (nodes) {
-        let nodesArr = [...nodes] as HTMLElement[]
-        nodesArr = nodesArr.filter((node) => node.tagName === 'DIV')
-        return nodesArr.reduce(
-            (acc, cur) =>
-                acc +
-                cur.innerHTML.replace(/\s+/g, ' ').replaceAll('<br>', '\r\n').trim() +
-                '\r\n\r\n',
-            ''
-        )
-    } else {
-        return ''
-    }
-}
