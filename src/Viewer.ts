@@ -1,6 +1,5 @@
 import TextRecord from './TextRecord.js'
 import { RecInfo } from './types.js'
-// TODO как бы их все писать в одном месте для всех файлов
 
 const outputContainer = document.getElementById('output')
 const templatesContainer = document.getElementById('templates')
@@ -20,7 +19,6 @@ export default class Viewer {
         return arr
     }
     render(recInfo: RecInfo[]) {
-        // if (templatesContainer && outputContainer) {
         recInfo.forEach((rec) => {
             if (rec.element) {
                 if (rec.position === 1) outputContainer!.appendChild(rec.element)
@@ -31,7 +29,6 @@ export default class Viewer {
     }
     getRecOrder(): RecInfo[] {
         let arr: RecInfo[] = []
-
         const draggables = [...document.querySelectorAll('.draggable')]
         arr = draggables.map((item) => {
             return { id: item.id, position: item.parentElement?.id === 'output' ? 1 : 0 }

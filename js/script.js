@@ -1,6 +1,5 @@
-// import start from './dataRead.js'
 import RecCollection from './RecCollection.js';
-import Viewer from './viewer.js';
+import Viewer from './Viewer.js';
 const recCollection = new RecCollection();
 const viewer = new Viewer();
 document.getElementById('CopyBTN')?.addEventListener('click', copyText);
@@ -141,11 +140,4 @@ function getText(id) {
         return '';
     }
 }
-// function removeEmptyLines(input) {
-//     return input
-//         .split(/\r?\n/)
-//         .map((line) => line.trim())
-//         .filter((line) => line !== '')
-//         .join('\r\n')
-// }
 //# sourceMappingURL=script.js.map

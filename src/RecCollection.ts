@@ -1,8 +1,6 @@
 import TextRecord from './TextRecord.js'
 import { RecInfo } from './types.js'
 
-// type RecInfo = { id: string; position: number }
-
 export default class RecCollection {
     private collection: TextRecord[]
 
@@ -19,11 +17,7 @@ export default class RecCollection {
         })
     }
     newOrder(recs: RecInfo[]): void {
-        // TODO
-        console.log('IN')
-
         const newRecs: TextRecord[] = []
-
         // заменить позишин и пермешать массив
         this.collection.forEach((item) => {
             const index = recs.findIndex((rec) => rec.id === item.id)
@@ -31,11 +25,6 @@ export default class RecCollection {
             newRecs[index] = item
         })
         this.collection = newRecs
-
-        // this.collection.forEach((item) => {
-        //     const index = recs.findIndex((rec) => rec.id === item.id)
-        //     item.position = recs[index].position
-        // })
     }
     readData(data: string) {
         const templates = data.split('\r\n\r\n\r\n')

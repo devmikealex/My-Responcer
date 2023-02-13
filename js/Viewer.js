@@ -1,5 +1,4 @@
 import TextRecord from './TextRecord.js';
-// TODO как бы их все писать в одном месте для всех файлов
 const outputContainer = document.getElementById('output');
 const templatesContainer = document.getElementById('templates');
 export default class Viewer {
@@ -19,7 +18,6 @@ export default class Viewer {
         return arr;
     }
     render(recInfo) {
-        // if (templatesContainer && outputContainer) {
         recInfo.forEach((rec) => {
             if (rec.element) {
                 if (rec.position === 1)

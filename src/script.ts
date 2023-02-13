@@ -1,8 +1,6 @@
-// import start from './dataRead.js'
-
 import RecCollection from './RecCollection.js'
 import { RecInfo } from './types.js'
-import Viewer from './viewer.js'
+import Viewer from './Viewer.js'
 
 const recCollection = new RecCollection()
 const viewer = new Viewer()
@@ -168,11 +166,3 @@ function getText(id: string): string {
         return ''
     }
 }
-
-// function removeEmptyLines(input) {
-//     return input
-//         .split(/\r?\n/)
-//         .map((line) => line.trim())
-//         .filter((line) => line !== '')
-//         .join('\r\n')
-// }
