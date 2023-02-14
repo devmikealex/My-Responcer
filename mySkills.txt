@@ -1,0 +1,7 @@
+JavaScript / TypeScript / PHP
+Node.js
+Express
+React
+MongoDB
+HTML / CSS / SASS / LESS
+Webpack / git / VSCode
