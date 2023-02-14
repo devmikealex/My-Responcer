@@ -12,6 +12,11 @@ input[type="checkbox"] {
     transform: translateY(-.1em);
     margin-right: 0.5em;
 }
+input[type="text"] {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+}
 
 button {
 	background-color: #6edfdb;

@@ -83,11 +83,7 @@ export default class RecCollection {
         viewer.log(message);
     }
     getText() {
-        // console.log(this.collection[0].element)
-        // const a = this.collection[0].element.getElementsByTagName('input')
-        // console.log('🚀', a[0].checked)
-        // return 'aa'
-        return this.collection
+        let out = this.collection
             .filter((item) => {
             const checked = item.element.getElementsByTagName('input')[0].checked; // значение чекбокса
             return item.position === 1 && checked;
@@ -95,6 +91,23 @@ export default class RecCollection {
             .map((item) => item.text)
             .join('\r\n\r\n')
             .replace('%mySkills%', this.mySkills);
+        let t = '';
+        let a = document.getElementById('KTO').value;
+        if (a) {
+            t = ', ';
+        }
+        out = out.replace('%КТО%', t + a);
+        a = document.getElementById('HAKOGO').value;
+        if (a) {
+            t = ' ';
+        }
+        out = out.replace('%НА КОГО%', t + a);
+        a = document.getElementById('KOGO').value;
+        if (!a) {
+            a = '!!!!!!!!!!!!';
+        }
+        out = out.replace('%КОГО%', a);
+        return out;
     }
     updateAfterDrag() {
         const newOrder = viewer.getRecOrder();
