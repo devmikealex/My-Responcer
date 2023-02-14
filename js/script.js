@@ -1,14 +1,28 @@
 import RecCollection from './RecCollection.js';
 const recCollection = new RecCollection();
-document.getElementById('CopyBTN')?.addEventListener('click', copyText);
-document.getElementById('SaveBTN')?.addEventListener('click', save);
-document.getElementById('LoadBTN')?.addEventListener('click', load);
-document.getElementById('LoadCLR')?.addEventListener('click', clear);
+document
+    .getElementById('CopyBTN')
+    ?.addEventListener('click', () => recCollection.copyText());
+document
+    .getElementById('SaveBTN')
+    ?.addEventListener('click', () => recCollection.saveData());
+document
+    .getElementById('LoadBTN')
+    ?.addEventListener('click', () => recCollection.loadData());
+document
+    .getElementById('LoadCLR')
+    ?.addEventListener('click', () => recCollection.clearData());
+// document.getElementById('CopyBTN')?.addEventListener('click', copyText)
+// document.getElementById('SaveBTN')?.addEventListener('click', save)
+// document.getElementById('LoadBTN')?.addEventListener('click', load)
+// document.getElementById('LoadCLR')?.addEventListener('click', clear)
 async function start() {
     const res = await fetch('./data.txt');
     const data = await res.text();
+    const res2 = await fetch('./mySkills.txt');
+    recCollection.mySkills = await res2.text();
     recCollection.readData(data);
-    load();
+    recCollection.loadData(); // загрузка настроек отображения
     recCollection.render();
 }
 start().then(() => {
@@ -88,29 +102,4 @@ start().then(() => {
         });
     });
 });
-function save() {
-    recCollection.saveData();
-}
-function load() {
-    recCollection.loadData();
-}
-function clear() {
-    recCollection.clearData();
-}
-function copyText() {
-    recCollection.copyText();
-}
-function _getText(id) {
-    const nodes = document.getElementById(id)?.childNodes;
-    if (nodes) {
-        let nodesArr = [...nodes];
-        nodesArr = nodesArr.filter((node) => node.tagName === 'DIV');
-        return nodesArr.reduce((acc, cur) => acc +
-            cur.innerHTML.replace(/\s+/g, ' ').replaceAll('<br>', '\r\n').trim() +
-            '\r\n\r\n', '');
-    }
-    else {
-        return '';
-    }
-}
 //# sourceMappingURL=script.js.map

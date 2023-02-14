@@ -4,7 +4,8 @@
     "description": "",
     "main": "dataRead.js",
     "scripts": {
-        "watch": "tsc --watch"
+        "watch": "tsc --watch",
+        "sass:watch": "sass --watch src/styles:./"
     },
     "keywords": [],
     "author": "",

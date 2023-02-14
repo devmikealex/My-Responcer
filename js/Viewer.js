@@ -3,7 +3,7 @@ const outputContainer = document.getElementById('output');
 const templatesContainer = document.getElementById('templates');
 const logout = document.getElementById('log-output');
 export default class Viewer {
-    createData(data) {
+    ___createData(data) {
         const arr = [];
         if (templatesContainer && outputContainer) {
             const templates = data.split('\r\n\r\n\r\n');

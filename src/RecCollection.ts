@@ -6,13 +6,14 @@ const viewer = new Viewer()
 
 export default class RecCollection {
     private collection: TextRecord[]
+    mySkills: string = ''
 
     constructor() {
-        document.getElementById('CopyBTN')?.addEventListener('click', this.copyText)
-        document.getElementById('SaveBTN')?.addEventListener('click', this.saveData)
-        document.getElementById('LoadBTN')?.addEventListener('click', this.loadData)
-        document.getElementById('LoadCLR')?.addEventListener('click', this.clearData)
         this.collection = []
+        // document.getElementById('CopyBTN')?.addEventListener('click', this.copyText)
+        // document.getElementById('SaveBTN')?.addEventListener('click', this.saveData)
+        // document.getElementById('LoadBTN')?.addEventListener('click', this.loadData)
+        // document.getElementById('LoadCLR')?.addEventListener('click', this.clearData)
     }
 
     addRecord(rec: TextRecord): void {
@@ -71,6 +72,7 @@ export default class RecCollection {
         this.log('Copy to clipboard')
         const a = this.getText()
         navigator.clipboard.writeText(a)
+        console.log('----------------------------')
         console.log(a)
     }
     render() {
@@ -80,10 +82,18 @@ export default class RecCollection {
         viewer.log(message)
     }
     getText(): string {
+        // console.log(this.collection[0].element)
+        // const a = this.collection[0].element.getElementsByTagName('input')
+        // console.log('🚀', a[0].checked)
+        // return 'aa'
         return this.collection
-            .filter((item) => item.position === 1)
+            .filter((item) => {
+                const checked = item.element.getElementsByTagName('input')[0].checked // значение чекбокса
+                return item.position === 1 && checked
+            })
             .map((item) => item.text)
             .join('\r\n\r\n')
+            .replace('%mySkills%', this.mySkills)
     }
     updateAfterDrag() {
         const newOrder = viewer.getRecOrder()

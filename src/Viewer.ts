@@ -6,7 +6,7 @@ const templatesContainer = document.getElementById('templates')
 const logout = document.getElementById('log-output')
 
 export default class Viewer {
-    createData(data: string): TextRecord[] {
+    ___createData(data: string): TextRecord[] {
         const arr: TextRecord[] = []
         if (templatesContainer && outputContainer) {
             const templates = data.split('\r\n\r\n\r\n')

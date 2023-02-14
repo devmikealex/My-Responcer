@@ -1,6 +1,18 @@
 import RecCollection from './RecCollection.js'
 
 const recCollection = new RecCollection()
+document
+    .getElementById('CopyBTN')
+    ?.addEventListener('click', () => recCollection.copyText())
+document
+    .getElementById('SaveBTN')
+    ?.addEventListener('click', () => recCollection.saveData())
+document
+    .getElementById('LoadBTN')
+    ?.addEventListener('click', () => recCollection.loadData())
+document
+    .getElementById('LoadCLR')
+    ?.addEventListener('click', () => recCollection.clearData())
 
 // document.getElementById('CopyBTN')?.addEventListener('click', copyText)
 // document.getElementById('SaveBTN')?.addEventListener('click', save)
@@ -10,6 +22,8 @@ const recCollection = new RecCollection()
 async function start() {
     const res = await fetch('./data.txt')
     const data = await res.text()
+    const res2 = await fetch('./mySkills.txt')
+    recCollection.mySkills = await res2.text()
     recCollection.readData(data)
     recCollection.loadData() // загрузка настроек отображения
     recCollection.render()
