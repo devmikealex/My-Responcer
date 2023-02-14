@@ -33,7 +33,10 @@ export default class Viewer {
         let arr = [];
         const draggables = [...document.querySelectorAll('.draggable')];
         arr = draggables.map((item) => {
-            return { id: item.id, position: item.parentElement?.id === 'output' ? 1 : 0 };
+            return {
+                id: item.id,
+                position: item.parentElement?.id === 'output' ? 1 : 0,
+            };
         });
         return arr;
     }

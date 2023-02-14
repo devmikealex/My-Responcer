@@ -28,6 +28,13 @@ export default class RecCollection {
         });
         this.collection = newRecs;
     }
+    setChecked(recs) {
+        this.collection.forEach((item) => {
+            const index = recs.findIndex((rec) => rec.id === item.id);
+            item.checked = !!recs[index].checked;
+            item.element.getElementsByTagName('input')[0].checked = item.checked;
+        });
+    }
     readData(data) {
         const templates = data.split('\r\n\r\n\r\n');
         templates.forEach((text) => {
@@ -37,7 +44,8 @@ export default class RecCollection {
     }
     saveData() {
         const t = JSON.stringify(this.collection.map((item) => {
-            return { id: item.id, position: item.position };
+            const checked = item.element.getElementsByTagName('input')[0].checked; // значение чекбокса
+            return { id: item.id, position: item.position, checked };
         }));
         console.log(t);
         this.log('Save data');
@@ -49,8 +57,8 @@ export default class RecCollection {
             this.log('Load data');
             console.log('localStorage =', t);
             const newOrder = JSON.parse(t);
-            console.log(newOrder);
             this.newOrder(newOrder);
+            this.setChecked(newOrder);
             this.render();
         }
         else {

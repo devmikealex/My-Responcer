@@ -24,6 +24,7 @@ export default class TextRecord {
         this.id = firstLine.slice(2);
         this.position = +firstLine.slice(0, 1);
         this.text = otherText;
+        this.checked = true;
         this.element = createHTML(this);
     }
     getHTML() {

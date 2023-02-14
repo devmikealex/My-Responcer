@@ -17,6 +17,7 @@ export default class TextRecord {
     readonly text: string
     readonly element: HTMLDivElement
     position: number
+    checked: boolean
 
     /**
      * Creates an instance of TextRecord.
@@ -31,6 +32,7 @@ export default class TextRecord {
         this.id = firstLine.slice(2)
         this.position = +firstLine.slice(0, 1)
         this.text = otherText
+        this.checked = true
 
         this.element = createHTML(this)
     }
