@@ -53,6 +53,14 @@ function createHTML(rec: TextRecord): HTMLDivElement {
     newCheck.type = 'checkbox'
     newCheck.checked = true
 
+    const copyBtn = document.createElement('button') as HTMLButtonElement
+    copyBtn.textContent = 'C'
+    copyBtn.className = 'copyBtn'
+    copyBtn.onclick = () => {
+        navigator.clipboard.writeText(rec.text)
+    }
+
     newEl.prepend(newCheck)
+    newEl.append(copyBtn)
     return newEl
 }

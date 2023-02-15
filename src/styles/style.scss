@@ -12,6 +12,7 @@ input[type="checkbox"] {
     transform: translateY(-.1em);
     margin-right: 0.5em;
 }
+
 input[type="text"] {
     display: block;
     width: 90%;
@@ -19,15 +20,31 @@ input[type="text"] {
 }
 
 button {
-	background-color: #6edfdb;
+    background-color: #6edfdb;
     border-radius: 0.5rem;
     border: 0;
-	cursor: pointer;
-	color: #123e3c;
-	padding: 4px 20px;
-	&:hover {
-		background-color: #6ebfdf;
-	}
+    cursor: pointer;
+    color: #123e3c;
+    padding: 4px 16px;
+
+    &:hover {
+        background-color: #6ebfdf;
+    }
+}
+
+.copyBtn {
+    padding: 4px 8px;
+    margin-left: 6px;
+    background-color: rgb(227, 227, 227);
+
+    &:hover {
+        background-color: rgb(175, 175, 175);
+    }
+}
+
+.buttonsline {
+    text-align: center;
+    margin: 2px;
 }
 
 .container {
@@ -52,10 +69,12 @@ button {
     cursor: move;
     border-radius: .5rem;
     border: 2px solid #b5b5b5;
+
     &.dragging {
         /* opacity: 0.5; */
         border: 2px solid rgb(7, 219, 0);
     }
+
     &.static {
         opacity: 0.7;
     }
@@ -75,6 +94,41 @@ button {
     font-size: 18px;
     max-height: 4em;
     overflow-y: auto;
+}
+
+#snackbar {
+    background-color: rgb(155, 225, 255);
+    border-radius: 6px;
+    // position: sticky;
+    position: fixed;
+    // bottom: 24px;
+    // left: 44px;
+    // right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 60px;
+    min-width: 300px;
+    // margin: 50px;
+    padding: 10px 14px;
+    box-shadow: 0px 4px 15px -1px rgba(0, 0, 0, 0.5);
+    font-weight: 600;
+
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    button {
+        background-color: unset;
+        padding: 4px;
+        // border-radius: 50%;
+        // width: 36px;
+        // height: 36px;
+        // color: white;
+        // &:hover {
+        //     background-color: rgb(203, 0, 0);
+        // }
+    }
 }
 
 /* .twocolumnd {

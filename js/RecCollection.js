@@ -93,20 +93,23 @@ export default class RecCollection {
             .replace('%mySkills%', this.mySkills);
         let t = '';
         let a = document.getElementById('KTO').value;
-        if (a) {
+        if (a)
             t = ', ';
-        }
         out = out.replace('%КТО%', t + a);
         a = document.getElementById('HAKOGO').value;
-        if (a) {
-            t = ' ';
-        }
-        out = out.replace('%НА КОГО%', t + a);
+        if (a)
+            t = ' "';
+        else
+            t = '';
+        out = out.replace('%НА КОГО%', t + a + (a ? '"' : ''));
         a = document.getElementById('KOGO').value;
-        if (!a) {
+        if (!a)
             a = '!!!!!!!!!!!!';
-        }
         out = out.replace('%КОГО%', a);
+        a = document.getElementById('COMPANY').value;
+        if (!a)
+            a = '!!!!!!!!!!!!';
+        out = out.replace('%КОМПАНИЯ%', a);
         return out;
     }
     updateAfterDrag() {

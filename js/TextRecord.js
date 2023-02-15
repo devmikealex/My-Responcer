@@ -40,7 +40,14 @@ function createHTML(rec) {
     const newCheck = document.createElement('input');
     newCheck.type = 'checkbox';
     newCheck.checked = true;
+    const copyBtn = document.createElement('button');
+    copyBtn.textContent = 'C';
+    copyBtn.className = 'copyBtn';
+    copyBtn.onclick = () => {
+        navigator.clipboard.writeText(rec.text);
+    };
     newEl.prepend(newCheck);
+    newEl.append(copyBtn);
     return newEl;
 }
 //# sourceMappingURL=TextRecord.js.map

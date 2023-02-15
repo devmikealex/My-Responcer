@@ -25,10 +25,24 @@ button {
   border: 0;
   cursor: pointer;
   color: #123e3c;
-  padding: 4px 20px;
+  padding: 4px 16px;
 }
 button:hover {
   background-color: #6ebfdf;
+}
+
+.copyBtn {
+  padding: 4px 8px;
+  margin-left: 6px;
+  background-color: rgb(227, 227, 227);
+}
+.copyBtn:hover {
+  background-color: rgb(175, 175, 175);
+}
+
+.buttonsline {
+  text-align: center;
+  margin: 2px;
 }
 
 .container {
@@ -76,6 +90,27 @@ button:hover {
   font-size: 18px;
   max-height: 4em;
   overflow-y: auto;
+}
+
+#snackbar {
+  background-color: rgb(155, 225, 255);
+  border-radius: 6px;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 60px;
+  min-width: 300px;
+  padding: 10px 14px;
+  box-shadow: 0px 4px 15px -1px rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+}
+#snackbar .wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+#snackbar button {
+  background-color: unset;
+  padding: 4px;
 }
 
 /* .twocolumnd {

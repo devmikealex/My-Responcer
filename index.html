@@ -10,18 +10,26 @@
 
 <body>
 
-    <button id="CopyBTN">Copy</button>
-    <button id="SaveBTN">Save</button>
-    <button id="LoadBTN">Load</button>
-    <button id="LoadCLR">Clear</button>
-    <br>
-    <input type="text" id="KTO" placeholder="Дмитрий">
+    <div class="buttonsline">
+        <button id="CopyBTN">Copy</button>
+        <button id="SaveBTN">Save</button>
+        <button id="LoadBTN">Load</button>
+        <button id="LoadCLR">Clear</button>
+    </div>
+    <input type="text" id="KTO" placeholder="(кто) Дмитрий">
     <input type="text" id="HAKOGO" placeholder="(кого) JavaScript программиста">
     <input type="text" id="KOGO" placeholder="(кого) WEB разработчика">
-    <div id="log-output"></div>
+    <input type="text" id="COMPANY" placeholder="(где) в компании РОСТ">
+    <!-- <div id="log-output"></div> -->
     <div class="twocolumnd">
         <div class="container" id="output"></div>
         <div class="container" id="templates"></div>
+    </div>
+    <div id="snackbar" style="display: none;">
+        <div class="wrapper">
+            <div class="message">*</div>
+            <button id="snackbar-close-button">&#10006;</button>
+        </div>
     </div>
     <script src="./js/script.js" type="module" defer></script>
 </body>

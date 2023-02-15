@@ -101,22 +101,23 @@ export default class RecCollection {
 
         let t = ''
         let a = (document.getElementById('KTO') as HTMLInputElement).value
-        if (a) {
-            t = ', '
-        }
+        if (a) t = ', '
         out = out.replace('%КТО%', t + a)
 
         a = (document.getElementById('HAKOGO') as HTMLInputElement).value
-        if (a) {
-            t = ' '
-        }
-        out = out.replace('%НА КОГО%', t + a)
+
+        if (a) t = ' "'
+        else t = ''
+        out = out.replace('%НА КОГО%', t + a + (a ? '"' : ''))
 
         a = (document.getElementById('KOGO') as HTMLInputElement).value
-        if (!a) {
-            a = '!!!!!!!!!!!!'
-        }
+        if (!a) a = '!!!!!!!!!!!!'
         out = out.replace('%КОГО%', a)
+
+        a = (document.getElementById('COMPANY') as HTMLInputElement).value
+        if (!a) a = '!!!!!!!!!!!!'
+        out = out.replace('%КОМПАНИЯ%', a)
+
         return out
     }
     updateAfterDrag() {
