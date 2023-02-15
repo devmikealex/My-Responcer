@@ -1,3 +1,6 @@
+$main-color: rgb(94, 153, 226);
+$br-radius: 8px;
+
 body {
     padding: 0;
     margin: 0;
@@ -20,15 +23,15 @@ input[type="text"] {
 }
 
 button {
-    background-color: #6edfdb;
-    border-radius: 0.5rem;
+    background-color: $main-color;
+    color: white;
+    border-radius: $br-radius;
     border: 0;
     cursor: pointer;
-    color: #123e3c;
     padding: 4px 16px;
 
     &:hover {
-        background-color: #6ebfdf;
+        background-color: darken($color: $main-color, $amount: 10);
     }
 }
 
@@ -36,6 +39,7 @@ button {
     padding: 4px 8px;
     margin-left: 6px;
     background-color: rgb(227, 227, 227);
+    color: #333;
 
     &:hover {
         background-color: rgb(175, 175, 175);
@@ -51,28 +55,28 @@ button {
     background-color: #333;
     padding: 0.5rem;
     margin: 0.2rem;
-    border-radius: .5rem;
+    border-radius: $br-radius;
 }
 
 #templates {
-    background-color: rgb(203, 69, 16);
+    background-color: rgb(232, 141, 105);
 }
 
 #output {
-    background-color: rgb(19, 81, 156);
+    background-color: $main-color;
 }
 
 .draggable {
     background-color: white;
-    padding: 0.4rem;
-    margin: 0.5rem;
+    padding: 0.3rem;
+    margin: 0.3rem;
     cursor: move;
-    border-radius: .5rem;
+    border-radius: $br-radius;
     border: 2px solid #b5b5b5;
 
     &.dragging {
         /* opacity: 0.5; */
-        border: 2px solid rgb(7, 219, 0);
+        border: 2px solid darken($color: $main-color, $amount: 40);
     }
 
     &.static {
@@ -88,6 +92,10 @@ button {
     background-color: rgb(196, 218, 255);
 }
 
+.dimmed {
+    opacity: 0.7;
+}
+
 #log-output {
     background-color: rgb(217, 217, 217);
     padding: 3px;
@@ -97,8 +105,8 @@ button {
 }
 
 #snackbar {
-    background-color: rgb(155, 225, 255);
-    border-radius: 6px;
+    background-color: lighten($color: $main-color, $amount: 20);
+    border-radius: $br-radius;
     // position: sticky;
     position: fixed;
     // bottom: 24px;
@@ -120,6 +128,7 @@ button {
 
     button {
         background-color: unset;
+        color: #333;
         padding: 4px;
         // border-radius: 50%;
         // width: 36px;

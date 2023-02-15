@@ -37,16 +37,22 @@ function createHTML(rec) {
     newEl.className = 'draggable';
     newEl.draggable = true;
     newEl.id = rec.id;
-    const newCheck = document.createElement('input');
-    newCheck.type = 'checkbox';
-    newCheck.checked = true;
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = true;
+    checkbox.onchange = function () {
+        if (this.checked)
+            newEl.classList.remove('dimmed');
+        else
+            newEl.classList.add('dimmed');
+    };
     const copyBtn = document.createElement('button');
     copyBtn.textContent = 'C';
     copyBtn.className = 'copyBtn';
     copyBtn.onclick = () => {
         navigator.clipboard.writeText(rec.text);
     };
-    newEl.prepend(newCheck);
+    newEl.prepend(checkbox);
     newEl.append(copyBtn);
     return newEl;
 }

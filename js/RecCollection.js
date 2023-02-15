@@ -32,7 +32,9 @@ export default class RecCollection {
         this.collection.forEach((item) => {
             const index = recs.findIndex((rec) => rec.id === item.id);
             item.checked = !!recs[index].checked;
-            item.element.getElementsByTagName('input')[0].checked = item.checked;
+            const checkbox = item.element.getElementsByTagName('input')[0];
+            checkbox.checked = item.checked;
+            checkbox.dispatchEvent(new Event('change'));
         });
     }
     readData(data) {

@@ -49,9 +49,13 @@ function createHTML(rec: TextRecord): HTMLDivElement {
     newEl.draggable = true
     newEl.id = rec.id
 
-    const newCheck = document.createElement('input') as HTMLInputElement
-    newCheck.type = 'checkbox'
-    newCheck.checked = true
+    const checkbox = document.createElement('input') as HTMLInputElement
+    checkbox.type = 'checkbox'
+    checkbox.checked = true
+    checkbox.onchange = function () {
+        if ((this as HTMLInputElement).checked) newEl.classList.remove('dimmed')
+        else newEl.classList.add('dimmed')
+    }
 
     const copyBtn = document.createElement('button') as HTMLButtonElement
     copyBtn.textContent = 'C'
@@ -60,7 +64,7 @@ function createHTML(rec: TextRecord): HTMLDivElement {
         navigator.clipboard.writeText(rec.text)
     }
 
-    newEl.prepend(newCheck)
+    newEl.prepend(checkbox)
     newEl.append(copyBtn)
     return newEl
 }
