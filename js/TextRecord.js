@@ -47,11 +47,16 @@ function createHTML(rec) {
             newEl.classList.add('dimmed');
     };
     const copyBtn = document.createElement('button');
-    copyBtn.textContent = 'C';
+    // copyBtn.textContent = 'C'
     copyBtn.className = 'copyBtn';
     copyBtn.onclick = () => {
         navigator.clipboard.writeText(rec.text);
     };
+    const copyIcon = document.createElement('img');
+    copyIcon.src = './assets/copy_black_24dp.svg';
+    copyIcon.width = 16;
+    copyIcon.style.display = 'block';
+    copyBtn.append(copyIcon);
     newEl.prepend(checkbox);
     newEl.append(copyBtn);
     return newEl;

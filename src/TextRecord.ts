@@ -58,11 +58,18 @@ function createHTML(rec: TextRecord): HTMLDivElement {
     }
 
     const copyBtn = document.createElement('button') as HTMLButtonElement
-    copyBtn.textContent = 'C'
+    // copyBtn.textContent = 'C'
     copyBtn.className = 'copyBtn'
     copyBtn.onclick = () => {
         navigator.clipboard.writeText(rec.text)
     }
+
+    const copyIcon = document.createElement('img')
+    copyIcon.src = './assets/copy_black_24dp.svg'
+    copyIcon.width = 16
+    copyIcon.style.display = 'block'
+
+    copyBtn.append(copyIcon)
 
     newEl.prepend(checkbox)
     newEl.append(copyBtn)
