@@ -20,7 +20,11 @@ document
 // document.getElementById('LoadCLR')?.addEventListener('click', clear)
 
 async function start() {
-    const res = await fetch('./data.txt')
+    let res = await fetch('./data.txt')
+    if (res.status === 404) {
+        res = await fetch('./data-demo.txt')
+    }
+
     const data = await res.text()
     const res2 = await fetch('./mySkills.txt')
     recCollection.mySkills = await res2.text()
