@@ -100,8 +100,8 @@ start().then(() => {
                 element.classList.remove('blue');
             });
             recCollection.updateAfterDrag();
-            console.log('----------------------------');
-            console.log(recCollection.getText());
+            // console.log('----------------------------')
+            // console.log(recCollection.getText())
         });
     });
 });

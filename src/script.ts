@@ -118,8 +118,8 @@ start().then(() => {
             })
             recCollection.updateAfterDrag()
 
-            console.log('----------------------------')
-            console.log(recCollection.getText())
+            // console.log('----------------------------')
+            // console.log(recCollection.getText())
         })
     })
 })
