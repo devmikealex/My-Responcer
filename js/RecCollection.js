@@ -105,8 +105,15 @@ export default class RecCollection {
             t = '';
         out = out.replace('%НА КОГО%', t + a + (a ? '"' : ''));
         a = document.getElementById('KOGO').value;
-        if (!a)
-            a = '!!!!!!!!!!!!';
+        console.log('🚀 ~ a', a);
+        if (a) {
+        }
+        else {
+            const select = document.getElementById('KOGO-SEL');
+            const selImdex = select.selectedIndex;
+            const option = select.options[selImdex].textContent;
+            a = option;
+        }
         out = out.replace('%КОГО%', a);
         a = document.getElementById('COMPANY').value;
         if (!a)

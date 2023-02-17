@@ -113,8 +113,15 @@ export default class RecCollection {
         out = out.replace('%НА КОГО%', t + a + (a ? '"' : ''))
 
         a = (document.getElementById('KOGO') as HTMLInputElement).value
-        if (!a) a = '!!!!!!!!!!!!'
-        out = out.replace('%КОГО%', a)
+        console.log('🚀 ~ a', a)
+        if (a) {
+        } else {
+            const select = document.getElementById('KOGO-SEL') as HTMLSelectElement
+            const selImdex = select.selectedIndex
+            const option = select.options[selImdex].textContent
+            a = option!
+        }
+        out = out.replace('%КОГО%', a!)
 
         a = (document.getElementById('COMPANY') as HTMLInputElement).value
         if (!a) a = '!!!!!!!!!!!!'
