@@ -19,8 +19,9 @@ input[type="checkbox"] {
 input[type="text"],
 select {
     display: block;
-    width: 80%;
-    margin: 0 auto;
+    width: 400px;
+    max-width: 50%;
+    // margin: 0 auto;
 }
 
 select {
@@ -38,6 +39,11 @@ button {
     &:hover {
         background-color: darken($color: $main-color, $amount: 10);
     }
+}
+
+.inputs {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .copyBtn {
@@ -62,6 +68,13 @@ button {
 .buttonsline {
     text-align: center;
     margin: 2px;
+    position: fixed;
+    left: 50%;
+    top: 10px;
+    transform: translateX(-50%);
+    background-color: lighten($color: $main-color, $amount: 25);
+    padding: 4px 8px;
+    border-radius: $br-radius;
 }
 
 .container {
@@ -73,6 +86,7 @@ button {
 
 #header {
     // background-color: rgb(132, 205, 138);
+    padding-top: 2.5rem;
     background-color: lighten($color: $main-color, $amount: 25)
 }
 
@@ -91,6 +105,9 @@ button {
     cursor: move;
     border-radius: $br-radius;
     border: 2px solid #b5b5b5;
+    // max-height: 3rem;
+    // overflow-y: auto;
+    // scrollbar-width: thin;
 
     &.dragging {
         /* opacity: 0.5; */

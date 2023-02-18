@@ -16,8 +16,8 @@ input[type=checkbox] {
 input[type=text],
 select {
   display: block;
-  width: 80%;
-  margin: 0 auto;
+  width: 400px;
+  max-width: 50%;
 }
 
 select {
@@ -34,6 +34,11 @@ button {
 }
 button:hover {
   background-color: #337eda;
+}
+
+.inputs {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .copyBtn {
@@ -54,6 +59,13 @@ button:hover {
 .buttonsline {
   text-align: center;
   margin: 2px;
+  position: fixed;
+  left: 50%;
+  top: 10px;
+  transform: translateX(-50%);
+  background-color: #caddf5;
+  padding: 4px 8px;
+  border-radius: 8px;
 }
 
 .container {
@@ -64,6 +76,7 @@ button:hover {
 }
 
 #header {
+  padding-top: 2.5rem;
   background-color: #caddf5;
 }
 
