@@ -9,7 +9,15 @@ function log_close() {
     clearTimeout(snackbarTimer);
     snackbar.style.display = 'none';
 }
+// Singleton
 export default class Viewer {
+    constructor() {
+        if (Viewer.instance)
+            return Viewer.instance;
+        else {
+            Viewer.instance = this;
+        }
+    }
     // ___createData(data: string): TextRecord[] {
     //     const arr: TextRecord[] = []
     //     if (templatesContainer && outputContainer) {

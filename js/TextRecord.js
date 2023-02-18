@@ -33,10 +33,14 @@ export default class TextRecord {
 }
 function createHTML(rec) {
     const newEl = document.createElement('div');
-    newEl.innerHTML = rec.getHTML();
+    // newEl.innerHTML = rec.getHTML()
     newEl.className = 'draggable';
     newEl.draggable = true;
     newEl.id = rec.id;
+    const insideDiv = document.createElement('div');
+    insideDiv.innerHTML = rec.getHTML();
+    insideDiv.className = 'draggable-inside';
+    newEl.append(insideDiv);
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.checked = true;
@@ -57,8 +61,8 @@ function createHTML(rec) {
     copyIcon.width = 16;
     copyIcon.style.display = 'block';
     copyBtn.append(copyIcon);
-    newEl.prepend(checkbox);
-    newEl.append(copyBtn);
+    insideDiv.prepend(checkbox);
+    insideDiv.prepend(copyBtn);
     return newEl;
 }
 //# sourceMappingURL=TextRecord.js.map

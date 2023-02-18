@@ -15,7 +15,16 @@ function log_close() {
     snackbar!.style.display = 'none'
 }
 
+// Singleton
 export default class Viewer {
+    private static instance: Viewer
+
+    constructor() {
+        if (Viewer.instance) return Viewer.instance
+        else {
+            Viewer.instance = this
+        }
+    }
     // ___createData(data: string): TextRecord[] {
     //     const arr: TextRecord[] = []
     //     if (templatesContainer && outputContainer) {

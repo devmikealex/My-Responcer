@@ -55,6 +55,10 @@ button {
     background-color: rgb(227, 227, 227);
     color: #333;
 
+    float: right;
+    margin-right: 10px;
+    margin-top: 4px;
+
     &:hover {
         background-color: rgb(206, 206, 206);
     }
@@ -105,9 +109,12 @@ button {
     cursor: move;
     border-radius: $br-radius;
     border: 2px solid #b5b5b5;
-    // max-height: 3rem;
-    // overflow-y: auto;
-    // scrollbar-width: thin;
+
+    &-inside {
+        max-height: 3rem;
+        overflow-y: auto;
+        scrollbar-width: thin;
+    }
 
     &.dragging {
         /* opacity: 0.5; */

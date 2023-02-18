@@ -44,10 +44,16 @@ export default class TextRecord {
 
 function createHTML(rec: TextRecord): HTMLDivElement {
     const newEl = document.createElement('div')
-    newEl.innerHTML = rec.getHTML()
+    // newEl.innerHTML = rec.getHTML()
     newEl.className = 'draggable'
     newEl.draggable = true
     newEl.id = rec.id
+
+    const insideDiv = document.createElement('div')
+    insideDiv.innerHTML = rec.getHTML()
+    insideDiv.className = 'draggable-inside'
+
+    newEl.append(insideDiv)
 
     const checkbox = document.createElement('input') as HTMLInputElement
     checkbox.type = 'checkbox'
@@ -71,7 +77,7 @@ function createHTML(rec: TextRecord): HTMLDivElement {
 
     copyBtn.append(copyIcon)
 
-    newEl.prepend(checkbox)
-    newEl.append(copyBtn)
+    insideDiv.prepend(checkbox)
+    insideDiv.prepend(copyBtn)
     return newEl
 }

@@ -5,10 +5,6 @@ export default class RecCollection {
     constructor() {
         this.mySkills = '';
         this.collection = [];
-        // document.getElementById('CopyBTN')?.addEventListener('click', this.copyText)
-        // document.getElementById('SaveBTN')?.addEventListener('click', this.saveData)
-        // document.getElementById('LoadBTN')?.addEventListener('click', this.loadData)
-        // document.getElementById('LoadCLR')?.addEventListener('click', this.clearData)
     }
     addRecord(rec) {
         this.collection.push(rec);

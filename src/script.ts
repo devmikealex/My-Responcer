@@ -1,6 +1,7 @@
 import RecCollection from './RecCollection.js'
 
 const recCollection = new RecCollection()
+
 document
     .getElementById('CopyBTN')
     ?.addEventListener('click', () => recCollection.copyText())
