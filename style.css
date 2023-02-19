@@ -48,9 +48,9 @@ button:hover {
   margin-left: 6px;
   background-color: rgb(227, 227, 227);
   color: #333;
-  float: right;
-  margin-right: 10px;
-  margin-top: 4px;
+  position: absolute;
+  right: 16px;
+  bottom: 8px;
 }
 .copyBtn:hover {
   background-color: rgb(206, 206, 206);
@@ -98,6 +98,7 @@ button:hover {
   cursor: move;
   border-radius: 8px;
   border: 2px solid #b5b5b5;
+  position: relative;
 }
 .draggable-inside {
   max-height: 3rem;
